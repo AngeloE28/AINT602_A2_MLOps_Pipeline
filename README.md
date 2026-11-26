@@ -63,7 +63,62 @@ Numeric features are median-imputed and standardized (`StandardScaler`); categor
 
 ---
 
-## 4. Setup
+## 4. Setup (Virtual Env vs Docker)
+
+## Virtual Env Setup
+
+### Prerequisites
+* Python
+* pip (or other python package managers)
+* venv (python library for virtual environments)
+
+### Step 1: Clone the Repository
+
+```bash
+git clone https://github.com/AngeloE28/AINT602_A2_MLOps_Pipeline.git
+cd AINT602_A2_MLOps_Pipeline
+
+```
+
+### Step 2: Obtain and Place the Dataset
+
+The raw dataset is tracked with DVC and excluded from Git. Before building the Docker image, place the CSV using one of the options below:
+
+* **Option A - Manual download *(Currently Only Option Available)***: Download `Student_Performance_Teaching_Effectiveness.csv` from [Kaggle](https://www.kaggle.com/datasets/zara2099/student-performance-and-teaching-dataset/data) and save it to:
+```text
+data/raw/Student_Performance_Teaching_Effectiveness.csv
+
+```
+
+
+* **Option B - Pull via DVC** *(DVC remote was not setup for this project, only local DVC)*:
+```bash
+dvc pull
+
+```
+
+### Step 3: Create a virtual environment
+
+```bash
+python -m venv .venv
+```
+
+### Step 4: Activate the virtual environment
+
+```bash
+source .venv/bin/activate
+```
+
+### Step 5: Install dependency and MLFlow
+
+```bash
+pip install -r requirements.txt
+pip install mlflow
+```
+
+---
+
+## Docker Setup
 
 ### Prerequisites
 
