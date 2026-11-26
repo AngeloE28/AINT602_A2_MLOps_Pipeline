@@ -1,0 +1,5 @@
+outs:
+- md5: 9b6ff3961ac3792d740e399221c65185
+  size: 2136875
+  hash: md5
+  path: student_performance_model.joblib
