@@ -7,7 +7,7 @@ from sklearn.tree import DecisionTreeClassifier
 from src.features import add_student_work_engagement_features, build_model_pipeline
 
 DATA_PATH = Path("data/raw/Student_Performance_Teaching_Effectiveness.csv")
-MODEL_PATH = Path("models/student_performance_pipeline.joblib")
+MODEL_PATH = Path("models/student_performance_model.joblib")
 TARGET_COL = "Student_Performance"
 
 @pytest.fixture

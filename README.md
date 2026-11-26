@@ -73,7 +73,7 @@ Numeric features are median-imputed and standardized (`StandardScaler`); categor
 ### Step 1: Clone the Repository
 
 ```bash
-git clone [https://github.com/AngeloE28/AINT602_A2_MLOps_Pipeline.git](https://github.com/AngeloE28/AINT602_A2_MLOps_Pipeline.git)
+git clone https://github.com/AngeloE28/AINT602_A2_MLOps_Pipeline.git
 cd AINT602_A2_MLOps_Pipeline
 
 ```
