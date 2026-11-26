@@ -11,6 +11,7 @@ from sklearn.model_selection import KFold, cross_validate, train_test_split
 from sklearn.tree import DecisionTreeClassifier
 
 from src.features import build_model_pipeline
+from src.validate import REQUIRED_COLUMNS, validate_data
 
 
 def load_config(path: str = "configs/baseline.yaml") -> dict:
@@ -49,12 +50,12 @@ def build_model_candidates(config: dict) -> dict:
 
 def main(config_path: str = "configs/baseline.yaml") -> None:
     config = load_config(config_path)
-
+    
     # Load data & train split
-    df = pd.read_csv(config["dataset"]["path"])
-    target = config["dataset"]["target"]
-    X = df.drop(columns=[target])
-    y = df[target]
+    df = validate_data(pd.read_csv(config["dataset"]["path"]), is_training=True)
+    X = df[REQUIRED_COLUMNS]
+    y = df[config["dataset"]["target"]]
+
 
     X_train, X_test, y_train, y_test = train_test_split(
         X,
@@ -81,7 +82,7 @@ def main(config_path: str = "configs/baseline.yaml") -> None:
 
     # Run CV & log each candidate
     for name, pipe in candidates.items():
-        with mlflow.start_run(run_name=name):
+        with mlflow.start_run(run_name=name) as run:
             mlflow.set_tags({
                 "model_version": f"{name}_v1",
                 "preprocessing_version": config["preprocessing"]["version"],
@@ -129,11 +130,18 @@ def main(config_path: str = "configs/baseline.yaml") -> None:
                 best_f1 = f1_mean
                 best_name = name
                 best_pipe = pipe
+                best_run_id = run.info.run_id
 
     # Evaluate winning model on untouched test set & save reusable pipeline
     test_preds = best_pipe.predict(X_test)
     test_f1 = f1_score(y_test, test_preds, average="macro")
     test_acc = accuracy_score(y_test, test_preds)
+    with mlflow.start_run(run_id=best_run_id):
+        mlflow.log_metrics({
+            "test_f1_macro": test_f1,
+            "test_accuracy": test_acc,
+        })
+        mlflow.set_tag("selected_model", "true")
 
     output_path = Path(config["output"]["model_path"])
     output_path.parent.mkdir(parents=True, exist_ok=True)

@@ -31,4 +31,4 @@ models:
     min_samples_leaf: 3
 
 output:
-  model_path: models/student_performance_pipeline.joblib
+  model_path: models/student_performance_model.joblib
