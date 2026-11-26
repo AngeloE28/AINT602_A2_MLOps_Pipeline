@@ -175,21 +175,21 @@ docker build -t student-perf-mlops .
 
 ```
 
+
+3. Re-run training and tests:
+```bash
+docker run --rm student-perf-mlops python -m src.train
+docker run --rm student-perf-mlops
+
+```
+
+---
+
 ## 7. Viewing Experiments in MLFlow
 
 Because the model gets trained when the image is created, mlflow is already baked into the image with the model.
 
 ```bash
 docker run --rm -p 8000:8000 student-perf-mlops mlflow ui --backend-store-uri sqlite:///mlflow.db --host 0.0.0.0 --port 8000
-
-```
-
-### 
-
-
-3. Re-run training and tests:
-```bash
-docker run --rm student-perf-mlops python -m src.train
-docker run --rm student-perf-mlops
 
 ```
