@@ -9,8 +9,6 @@ venv/
 .ipynb_checkpoints/
 
 # Data and model artefacts
-data/raw/
-data/processed/
 models/*.pkl
 models/*.joblib
 models/*.onnx
