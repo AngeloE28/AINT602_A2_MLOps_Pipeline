@@ -109,6 +109,7 @@ docker build -t student-perf-mlops .
 ## 5. Running the Pipeline
 
 All pipeline stages can be executed with single-line Docker commands from the project root.
+The commands listed here instantly gets deleted due to the --rm flag
 
 ### Step 1: Run Automated Quality Checks (`pytest`)
 
@@ -173,6 +174,17 @@ All experiment parameters live in `configs/baseline.yaml`-no Python edits are re
 docker build -t student-perf-mlops .
 
 ```
+
+## 7. Viewing Experiments in MLFlow
+
+Because the model gets trained when the image is created, mlflow is already baked into the image with the model.
+
+```bash
+docker run --rm -p 8000:8000 student-perf-mlops mlflow ui --backend-store-uri sqlite:///mlflow.db --host 0.0.0.0 --port 8000
+
+```
+
+### 
 
 
 3. Re-run training and tests:
