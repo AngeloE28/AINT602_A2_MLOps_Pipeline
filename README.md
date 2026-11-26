@@ -156,7 +156,8 @@ docker run --rm student-perf-mlops python -m src.predict --input data/raw/Studen
 *(Optional)* To also save predictions to a CSV file inside the container, pass `--output <path>`:
 
 ```bash
-docker run --rm student-perf-mlops python -m src.predict --input data/raw/Student_Performance_Teaching_Effectiveness.csv --output data/predictions.csv
+
+docker run --rm -v "$(pwd)/outputs:/app/outputs" student-perf-mlops python -m src.predict --input data/raw/Student_Performance_Teaching_Effectiveness.csv --output outputs/predictions.csv
 
 ```
 
