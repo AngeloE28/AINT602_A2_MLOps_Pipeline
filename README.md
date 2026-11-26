@@ -15,7 +15,7 @@ This repository implements a modular, reproducible MLOps pipeline that predicts 
 │   └── baseline.yaml        # Central YAML config for dataset, splits, and model hyperparameters
 ├── data/
 │   └── raw/                 # DVC-tracked raw dataset (Student_Performance_Teaching_Effectiveness.csv)
-├── models/                  # Exported reusable scikit-learn pipeline model (.joblib)
+├── models/                  # Exported reusable scikit-learn pipeline model (.joblib) and DVC pointer file
 ├── notebooks/
 │   └── staging.ipynb        # Initial exploratory analysis and prototyping notebook
 ├── src/
