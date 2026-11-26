@@ -18,5 +18,8 @@ COPY tests/ ./tests/
 COPY data/ ./data/
 COPY models/ ./models/
 
+# Train the model into the image
+RUN python -m src.train
+
 # Default command runs the automated test suite
 CMD ["pytest", "-v"]
