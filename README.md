@@ -10,7 +10,7 @@ This repository implements a modular, reproducible MLOps pipeline that predicts 
 
 ## 2. What This Repository Contains
 
-```text
+```
 ├── configs/
 │   └── baseline.yaml        # Central YAML config for dataset, splits, and model hyperparameters
 ├── data/
