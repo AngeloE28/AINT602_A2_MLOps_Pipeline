@@ -1,0 +1,4 @@
+[core]
+    remote = localremote
+['remote "localremote"']
+    url = /home/demoob/Python/ACU/t4-2026/aint602/assessments/dvc_storage
